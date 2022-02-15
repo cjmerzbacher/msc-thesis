@@ -1,0 +1,15 @@
+############################################################
+LAB NOTEBOOK
+############################################################
+14 Feb 2022
+gd_loop.ipnyb
+- Rewrote fixed-architecture DualControl as a nn.Module to 
+include a constructor with Ws as parameters
+- Wrote gradient descent loop to run without error
+Other
+- Sent update to OM
+
+15 Feb 2022
+Other
+- Started lab notebook :)
+- Set up Github repo for thesis code
