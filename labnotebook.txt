@@ -13,3 +13,8 @@ Other
 Other
 - Started lab notebook :)
 - Set up Github repo for thesis code
+toy_model_sundials.ipynb
+- Implemented allostery function and allosteric versions
+of genetic circuit functions
+- Plotted J1, J2 with X1 -> E1 allosteric control only
+for DC, DA, UR - some numerical issues even with sundials
