@@ -18,3 +18,22 @@ toy_model_sundials.ipynb
 of genetic circuit functions
 - Plotted J1, J2 with X1 -> E1 allosteric control only
 for DC, DA, UR - some numerical issues even with sundials
+
+2 Mar 2022
+020322_solver_test.ipynb
+EXPERIMENT SETTINGS
+0   Model           J1/J2       Lambda      Adjoint     Solver
+1   DualControl     E           10          Y           dopri5
+2   DualControl     N           10          Y           dopri5
+3   DualControl     E           1E-4        Y           dopri5
+4   DualControl     N           1E-4        Y           dopri5
+5   DualControl     E           10          N           dopri5
+6   DualControl     N           10          N           dopri5
+7   DualControl     E           1E-4        N           dopri5
+8   DualControl     N           1E-4        N           dopri5
+
+Cannot run with 5E4 time and DualControl function.
+Ran with 100 time, simpler ODEFun function.
+
+Next steps: Run 1x with complete time and numerical solver and plot
+ results to check for numerical erros
