@@ -20,7 +20,7 @@ of genetic circuit functions
 for DC, DA, UR - some numerical issues even with sundials
 
 2 Mar 2022
-020322_solver_test.ipynb
+020322.ipynb
 EXPERIMENT SETTINGS
 0   Model           J1/J2       Lambda      Adjoint     Solver
 1   DualControl     E           10          Y           dopri5
@@ -36,4 +36,41 @@ Cannot run with 5E4 time and DualControl function.
 Ran with 100 time, simpler ODEFun function.
 
 Next steps: Run 1x with complete time and numerical solver and plot
- results to check for numerical erros
+ results to check for numerical errors
+
+6 Mar 2022
+060322.ipynb
+Model           J1/J2       Lambda      Adjoint     Solver  Timing  Time
+ODEFun          -           -           N           dopri8  100     0.2s
+DualControl     E          1E-4         N           dopri8  5E4     0.5s
+DualControLEP   E          1E-4         N           dopri8  5E4     H40+s
+
+EqualParams appears to be broken; avoid using this function for now.
+Moving on with DualControl only...
+Loss computation: 0.2s
+Backpropagation: 0.9s
+Optimizer.step: 0.3s
+First GD loop works, repeating code results in an underflow error, 
+even when integration time is set very small (10)
+Examining gradients with loss.retain_grad(), loss.grad: -THIS IS INCORRECT
+- Initially None (as expected)
+- Then tensor(1.) - this seems wrong. Is it computing gradient wrt time and breaking?
+Could also be loss function.
+
+Next steps: compare solution results with ODEint solvers
+- ODEint and torchdiffeq had similar solutions
+- Switched to Sundials kernel and looked similar as well
+- Settings: n1,2 = 2, thetas = 1, ks=1E-7
+
+Examining weights of DualControl with func.W.grad:
+tensor([[-5.2252e+03,  5.2363e+03],
+        [ 1.5180e+04, -1.5211e+04],
+        [ 1.0527e+11,  3.9387e+11]])
+
+Ran Oisin's working code, saving gradients every 10 epochs. They don't change.
+This is an issue with saving tensors. When grads are printed each epoch they do change.
+Saved tensors out and plotted gradients (gradients_oisinmodel.png)
+
+Next steps: searching for numerical errors by varying param values in grid search
+Timing tests with different parameter values
+
