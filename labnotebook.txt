@@ -98,5 +98,40 @@ dopri5 - (2,2,1,1,1E-6, 1E-6) = 0.7s
 
 adjoint - (2,2,1,1,1E-5, 1E-5) = 4.3s
 adjoint - (2,2,1,1,1E-6, 1E-6) = 0.7s
+
 General upshot - theta matters less than k.
 Should I do a more comprehensive test of this?
+
+DO meeting
+Equalized model parameters
+(2,2,0.01,0.01,1E-7, 1E-7)
+1m9.4s to integrate
+3m8.8s to backprop
+Gradients:
+tensor([[ 3.8965e-07, -3.8965e-07],
+        [ 5.5231e-08, -5.5231e-08],
+        [ 4.9991e+11,  2.7609e-01]])
+
+14 Mar 2022
+Ran with both S, I functions but stiff S equation.
+Time to run 1000 iterations: 3m 32.6s
+
+Removed I function and code broke due to tensor error. 
+
+Get underflow error when try to integrate for long time. 
+Loss gets verry big and does not change even though theta changes.
+Time to 400 iters 59s
+
+Removed I functions but kept length of time same - Ran
+Changed theta1 = 1. Ran. Loss decreasing but thetas going in wrong direction?
+Changed theta2 = 1. Resulted in underflow error.
+Changed theta2 back to 2.0 and ran for 1000 iterations. Loss decreased monotonically to 0.005.
+Changed theta2 to 1.5 and ran for 1000 iterations. Loss gets bumpy but overall looks pretty monotonic. To min of 0.0007
+Changed theta 2 to 1 and got underflow error. Changed loss to 10*, 10E7* and still underflowing with little change. 
+Comparing actual solutions, this does not appear to be a stiffness problem as the shapes are similar.
+Changed to 1.2, original loss fn. Min loss 0.0013
+Changed to 1.1 it ran but fit badly and loss was not monotonic.
+
+Ran with 1.1 and 1.5 and showed prediction converging and then diverging.
+
+
