@@ -1,0 +1,4 @@
+,function,learning_rate,num_iters,solver,int_time,ic,theta_0,theta_1,trained,final_theta0,final_theta1,solved,initial_theta0,initial_theta1
+0,RandODE(),0.01,100,dopri5,100.0,0.01,1.0,1.0,False,False,False,False,False,False
+1,RandODE(),0.01,100,dopri5,200.0,0.01,1.0,1.0,False,False,False,False,False,False
+2,RandODE(),0.001,100,dopri5,200.0,0.01,1.0,1.0,False,False,False,False,False,False

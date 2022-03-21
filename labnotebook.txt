@@ -135,3 +135,16 @@ Changed to 1.1 it ran but fit badly and loss was not monotonic.
 Ran with 1.1 and 1.5 and showed prediction converging and then diverging.
 
 
+- Run dual control model with small final time - can we get it to converge 
+- Try upstream repression bc/ fewer nonlinearity
+- Chart about cornering the problem to give to OM
+Try integrating ODE once with following settings first:
+- Try crappier solver to see if it runs
+- Try dopri5 with deliberately - rtol = 10E-2 (10E-4)
+Then try with GD loop 
+
+
+20 Mar 2022
+Created experiment_recap_200322.ipynb
+- Training intial easy system
+- Matching solutions with scipy solvers and simple biological system
